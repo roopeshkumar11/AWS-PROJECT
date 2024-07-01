@@ -8,16 +8,17 @@
  
  
 <h3>Key Components</h3>
-1.	Amazon S3: Scalable storage service for storing uploaded data.
-2.	AWS Lambda: Serverless compute service for processing data.
-3.	Amazon SNS: Simple Notification Service for sending real-time notifications.
-4.	EC2 Instance with Apache2: Web server to host and serve the frontend application and handle data uploads.
-5.	Amazon API Gateway: Managed service for creating and managing RESTful APIs to connect the frontend and backend services.
-6.	IAM Roles: Permissions management to secure interactions between AWS services.
+1.	Amazon S3: Scalable storage service for storing uploaded data.<br>
+2.	AWS Lambda: Serverless compute service for processing data.<br>
+3.	Amazon SNS: Simple Notification Service for sending real-time notifications.<br>
+4.	EC2 Instance with Apache2: Web server to host and serve the frontend application and handle data uploads.<br>
+5.	Amazon API Gateway: Managed service for creating and managing RESTful APIs to connect the frontend and backend services.<br>
+6.	IAM Roles: Permissions management to secure interactions between AWS services.<br>
+
 <h3>Detailed Implementation</h3>
 
-Step 1: Setting Up Amazon S3
-1.	Create an S3 Bucket:
+<h4>Step 1: Setting Up Amazon S3</h4>
+1  Create an S3 Bucket:
 o	Create a new S3 bucket (e.g., frontend-data-storage) for storing uploaded data.
 2.	Configure Bucket Permissions:
 o	Define bucket policies and access control to allow uploads from API Gateway and access from Lambda.
@@ -59,19 +60,20 @@ o	Connect API Gateway methods to AWS Lambda functions (e.g., DataProcessingFunct
 o	Deploy the API to a stage (e.g., prod) to generate API Gateway endpoints for frontend access.
 
 <h3>Project Workflow</h3>
-1.	Frontend Data Upload via API Gateway:
-o	Users interact with the frontend application hosted on an EC2 instance through API Gateway endpoints.
-o	API Gateway securely forwards data uploads to AWS Lambda for processing.
-2.	Data Processing with Lambda:
-o	AWS Lambda processes the uploaded data based on predefined logic.
-o	Processed data triggers notifications through Amazon SNS.
-3.	Real-Time Notifications:
-o	Amazon SNS sends notifications to subscribed users or systems about data upload and processing outcomes.
+<ul><b>Frontend Data Upload via API Gateway:</b>
+<li>	Users interact with the frontend application hosted on an EC2 instance through API Gateway endpoints.<li>
+<li>		API Gateway securely forwards data uploads to AWS Lambda for processing.<li>
+2.	<b>Data Processing with Lambda:</b>
+o	<li>	AWS Lambda processes the uploaded data based on predefined logic.<li>
+o	<li>	Processed data triggers notifications through Amazon SNS.<li>
+3.<b>	Real-Time Notifications:</b>
+o	<li>	Amazon SNS sends notifications to subscribed users or systems about data upload and processing outcomes.<li>
+</ul>
 
 <h3>Benefits</h3>
-•	Scalability: Easily scales to handle growing data volumes and fluctuating workloads.
-•	Cost-Efficiency: Pay only for the resources consumed with AWS Lambda’s serverless architecture.
-•	Reliability: Ensures high availability and durability with AWS's robust infrastructure.
-•	Real-Time Notifications: Instantly notifies users about data upload and processing outcomes.
-•	Security: Implements strong access controls and encryption mechanisms to protect data.
+•	Scalability: Easily scales to handle growing data volumes and fluctuating workloads.<br>
+•	Cost-Efficiency: Pay only for the resources consumed with AWS Lambda’s serverless architecture.<br>
+•	Reliability: Ensures high availability and durability with AWS's robust infrastructure.<br>
+•	Real-Time Notifications: Instantly notifies users about data upload and processing outcomes.<br>
+•	Security: Implements strong access controls and encryption mechanisms to protect data.<br>
 
