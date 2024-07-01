@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+
+
+</head>
+<body>
+    <style>
+
+        
+    </style>
+    <h2>Upload File to S3</h2>
+    <input type="file" id="fileInput">
+    <button id="uploadButton" disabled>Upload</button>
+    <div id="status"></div>
+
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function() {
+            document.getElementById('uploadButton').disabled = !this.files.length;
+        });
+
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                const fileContent = btoa(event.target.result);
+
+                const data = {
+                    file_name: file.name,
+                    file_content: fileContent
+                };
+
+                fetch('https://f7oa3bwvj3.execute-api.ap-south-1.amazonaws.com/store-image', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('status').textContent = data.message || 'File uploaded successfully!';
+                    fileInput.value = '';
+                    document.getElementById('uploadButton').disabled = true;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('status').textContent = 'Error uploading file';
+                });
+            };
+
+            reader.readAsBinaryString(file);
+        });
+    </script>
+</body>
+</html> 
+
+
